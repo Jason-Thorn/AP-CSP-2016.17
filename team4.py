@@ -21,6 +21,10 @@ def move(my_history, their_history, my_score, their_score):
     '''
 
     move = random.randint(0,1)
+    if their_history[0:-1]==c:
+        return b
+    elif their_history[0:-1]==b:
+        return b 
     if move==0:
         return c
     else:
