@@ -6,9 +6,9 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = 'Team 3' # Only 10 chars displayed.
+strategy_name = 'Copy cat'
+strategy_description = 'Copies other teams move'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -18,15 +18,14 @@ def move(my_history, their_history, my_score, their_score):
     Returns 'c' or 'b'. 
     '''
     move = random.randint(0,1)
-    if their_history[0:-1]==c:
+    if my_history=='':
         return b
-    elif their_history[0:-1]==b:
-        return b 
-    elif move==0:
+    if their_history[-1]=='b':
+        return b
+    if their_history[-1]=='c' and my_history[-1]=='b':
+        return b
+    if their_history[-1]=='c':
         return c
-    else:
-        return b
-
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
