@@ -9,7 +9,7 @@
 team_name = 'Team 3' # Only 10 chars displayed.
 strategy_name = 'Random'
 strategy_description = 'Randomly, unless they make the same move each time'
-    
+movesplayed=0
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
@@ -17,16 +17,19 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-    move = random.randint(0,1)
-    if their_history[0:-1]==c:
+    if my_history=='':
         return b
-    elif their_history[0:-1]==b:
-        return b 
-    elif move==0:
-        return c
-    else:
+    if their_history[-1]=='b':
         return b
-
+    if their_history[-1]=='c' and my_history[-1]=='b':
+        return b
+    if movesplayed>5:
+        if their_history[0:-1]==c:
+            return b
+        if their_history[0:-1]==b:
+            return b 
+    
+    movesplayed+=1
     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
